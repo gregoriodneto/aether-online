@@ -19,5 +19,20 @@ services:
       timeout: 3s
       retries: 10
 
+  game-server:
+    image: aether-game-server:1.2
+    container_name: aether-game-server
+    build: 
+      context: ../services/game-server
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:8000:8000"
+    restart: unless-stopped
+    networks: 
+      - aether-network
+    
+networks:
+  aether-network:
+
 volumes:
   postgres_data:
